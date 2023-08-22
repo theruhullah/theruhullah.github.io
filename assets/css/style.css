@@ -346,6 +346,7 @@ section {
 }
 
 .section-title {
+  text-align: center;
   padding-bottom: 30px;
 }
 
@@ -383,6 +384,7 @@ section {
 
 .section-title p {
   margin-bottom: 0;
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
