@@ -396,6 +396,7 @@ section {
 .about .content ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
 .about .content ul li {
