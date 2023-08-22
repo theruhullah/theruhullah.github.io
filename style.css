@@ -1,36 +1,31 @@
 /* styles.css */
+:root {
+    --background-color: #1D2327; /* Deep Winter background color */
+    --text-color: #767676; /* Deep Winter text color */
+    --link-color: #0F5C6E; /* Deep Winter link color */
+    --link-hover-color: #35415E; /* Darker shade for link hover */
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 nav.sticky {
     position: sticky;
     top: 0;
-    background-color: #333; /* Adjust to Deep Winter color */
+    background-color: var(--background-color);
     z-index: 100;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-nav li {
-    float: left;
-    margin-right: 20px;
-}
-
 nav a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    color: var(--link-color);
 }
 
 nav a:hover {
-    background-color: #555; /* Adjust to a darker shade */
+    background-color: var(--link-hover-color);
 }
+
+/* Apply the color scheme to other elements as needed */
