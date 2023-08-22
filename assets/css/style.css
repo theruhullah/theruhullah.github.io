@@ -1,6 +1,7 @@
 body {
   font-family: "Cormorant Garamond", serif;
   color: #696969;
+  font-size: 18px;
 }
 
 a {
@@ -511,7 +512,7 @@ section {
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
-  border-left: 2px solid #0563bb;
+  border-left: 2px solid #0F5C6E;
   position: relative;
 }
 
@@ -555,7 +556,7 @@ section {
   left: -9px;
   top: 0;
   background: #fff;
-  border: 2px solid #0563bb;
+  border: 2px solid #0F5C6E;
 }
 
 /*--------------------------------------------------------------
@@ -1006,11 +1007,11 @@ section {
 
 .contact .info i {
   font-size: 20px;
-  color: #0563bb;
+  color: #1D2327;
   float: left;
   width: 44px;
   height: 44px;
-  background: #eef7ff;
+  background: #767676;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1041,8 +1042,8 @@ section {
 .contact .info .email:hover i,
 .contact .info .address:hover i,
 .contact .info .phone:hover i {
-  background: #0563bb;
-  color: #fff;
+  background: #696969;
+  color: #1D2327;
 }
 
 .contact .php-email-form {
