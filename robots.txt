@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://ruhullah.pro/sitemap.xml
