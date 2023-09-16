@@ -623,7 +623,7 @@ section {
 
 .portfolio .portfolio-wrap::before {
   content: "";
-  background: rgba(255, 255, 255, 0.7);
+  background: #F3F7F8;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -750,7 +750,7 @@ section {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #fff;
+  background-color: #1D2327;
   opacity: 1;
   border: 1px solid #0563bb;
 }
