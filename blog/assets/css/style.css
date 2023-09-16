@@ -586,7 +586,7 @@ section {
   margin: 0 auto 25px auto;
   list-style: none;
   text-align: center;
-  background: #fff;
+  background: #F3F7F8;
   border-radius: 50px;
   padding: 2px 15px;
 }
@@ -599,7 +599,7 @@ section {
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
-  color: #272829;
+  color: #1D2327;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
