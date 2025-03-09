@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPS Survey – Ruhullah.pro</title>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>NPS Survey - Ruhullah.pro</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="container">
+    <h2>Feedback Survey</h2>
+    <p>On a scale from 0 to 10, how likely are you to recommend ruhullah.pro as a digital service to a friend or colleague?</p>
 
-    <h2>Quick Survey</h2>
-    
-    <form id="npsForm">
-        <label for="npsScore">⭐ On a scale from 0 to 10, how likely are you to recommend ruhullah.pro? ⭐</label>
-        <select id="npsScore" name="npsScore" required onchange="showFollowUp()">
-            <option value="" disabled selected>Choose a score</option>
-            <option value="0">0 - Not likely</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10 - Extremely likely</option>
-        </select>
+    <select id="npsScore">
+      <option value="" disabled selected>Select a score</option>
+      <option value="0">0 - Not at all likely</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10 - Extremely likely</option>
+    </select>
 
-        <div id="followUpContainer" style="display: none;">
-            <label for="followUp">What would make your score of <span id="currentScore"></span> a <span id="nextScore"></span>?</label>
-            <input type="text" id="followUp" name="followUp" placeholder="Your feedback">
-        </div>
+    <div id="followUp" style="display: none;">
+      <p>What would make your score of <span id="currentScore"></span> a <span id="nextScore"></span>?</p>
+      <textarea id="feedback" rows="4" placeholder="Your feedback here"></textarea>
+    </div>
 
-        <button type="submit">Submit</button>
-    </form>
-
+    <button onclick="submitForm()">Submit</button>
     <div id="responseMessage" style="display: none;"></div>
+  </div>
 
-    <script>
-        function showFollowUp() {
-            let score = document.getElementById("npsScore").value;
-            let followUpContainer = document.getElementById("followUpContainer");
-            let currentScore = document.getElementById("currentScore");
-            let nextScore = document.getElementById("nextScore");
+  <script>
+    document.getElementById('npsScore').addEventListener('change', function() {
+      let score = parseInt(this.value);
+      if (score < 10) {
+        document.getElementById('followUp').style.display = 'block';
+        document.getElementById('currentScore').textContent = score;
+        document.getElementById('nextScore').textContent = score + 1;
+      } else {
+        document.getElementById('followUp').style.display = 'none';
+      }
+    });
 
-            if (score < 10) {
-                followUpContainer.style.display = "block";
-                currentScore.innerText = score;
-                nextScore.innerText = parseInt(score) + 1;
-            } else {
-                followUpContainer.style.display = "none";
-            }
-        }
+    function submitForm() {
+      let score = document.getElementById('npsScore').value;
+      let feedback = document.getElementById('feedback').value;
 
-        document.getElementById("npsForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevents page reload
+      if (!score) {
+        alert("Please select a score before submitting.");
+        return;
+      }
 
-            let score = document.getElementById("npsScore").value;
-            let followUp = document.getElementById("followUp") ? document.getElementById("followUp").value : "";
+      let data = {
+        score: score,
+        feedback: feedback || "No additional comments",
+        timestamp: new Date().toISOString()
+      };
 
-            fetch("YOUR_WEB_APP_URL", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ npsScore: score, followUp: followUp })
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("responseMessage").innerText = "Thanks for your feedback!";
-                document.getElementById("responseMessage").style.display = "block";
-                document.getElementById("npsForm").reset();
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    </script>
-
+      fetch("YOUR_WEB_APP_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.text())
+      .then(result => {
+        document.getElementById('responseMessage').textContent = "Thank you for your feedback!";
+        document.getElementById('responseMessage').style.display = "block";
+        document.getElementById('npsScore').selectedIndex = 0;
+        document.getElementById('feedback').value = "";
+        document.getElementById('followUp').style.display = "none";
+      })
+      .catch(error => console.error("Error:", error));
+    }
+  </script>
 </body>
 </html>
