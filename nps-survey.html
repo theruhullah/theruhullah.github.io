@@ -48,36 +48,42 @@
       }
     });
 
-    function submitForm() {
-      let score = document.getElementById('npsScore').value;
-      let feedback = document.getElementById('feedback').value;
+function submitForm() {
+  let score = document.getElementById('npsScore').value;
+  let feedback = document.getElementById('feedback').value;
 
-      if (!score) {
-        alert("Please select a score before submitting.");
-        return;
-      }
+  if (!score) {
+    alert("Please select a score before submitting.");
+    return;
+  }
 
-      let data = {
-        score: score,
-        feedback: feedback || "No additional comments",
-        timestamp: new Date().toISOString()
-      };
+  let data = { score, feedback: feedback || "No additional comments", timestamp: new Date().toISOString() };
 
-      fetch("https://script.google.com/macros/library/d/1yxSgo-zyVexM-Pd1llO1g2djIqW-R1oFYYAGMlXI_6rJBkpGcbq63-V7/1", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.text())
-      .then(result => {
-        document.getElementById('responseMessage').textContent = "Thank you for your feedback!";
-        document.getElementById('responseMessage').style.display = "block";
-        document.getElementById('npsScore').selectedIndex = 0;
-        document.getElementById('feedback').value = "";
-        document.getElementById('followUp').style.display = "none";
-      })
-      .catch(error => console.error("Error:", error));
-    }
-  </script>
+  console.log("Submitting data:", data);
+
+  fetch("https://script.google.com/macros/s/AKfycby5eEQKdT2ASJ_knS3KXUtz_AhBghvzd6QYtE4tmBXK0rm_kSWhCYRdfGsiEBlYR2SsIQ/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    console.log("Response status:", response.status);
+    return response.text();
+  })
+  .then(result => {
+    console.log("Fetch result:", result);
+    document.getElementById('responseMessage').textContent = "Thank you for your feedback!";
+    document.getElementById('responseMessage').style.display = "block";
+    document.getElementById('npsScore').selectedIndex = 0;
+    document.getElementById('feedback').value = "";
+    document.getElementById('followUp').style.display = "none";
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+}
+
+
+
 </body>
 </html>
